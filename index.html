@@ -58,20 +58,12 @@ function loadStaff(){
   if(sheet==='Ledelsen'){
    const titleIndex=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
    const callIndex=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
-   if(titleIndex>=0&&callIndex>=0&&callIndex>titleIndex){
-    [staffHeaders[titleIndex],staffHeaders[callIndex]]=[staffHeaders[callIndex],staffHeaders[titleIndex]];
-    staffRows.forEach(row=>{[row[titleIndex],row[callIndex]]=[row[callIndex],row[titleIndex]]});
-    staffCallsignIndex=titleIndex;
-    staffCourses=staffHeaders.map((h,i)=>courseRe.test(h)?i:-1).filter(i=>i>=0);
-   }
-  }
-  if(sheet==='Ledelsen'){
-   const titleIndex=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
-   const callIndex=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
-   if(titleIndex>=0&&callIndex>=0&&callIndex<titleIndex){
-    [staffHeaders[titleIndex],staffHeaders[callIndex]]=[staffHeaders[callIndex],staffHeaders[titleIndex]];
-    staffRows.forEach(row=>{[row[titleIndex],row[callIndex]]=[row[callIndex],row[titleIndex]]});
-    staffCallsignIndex=titleIndex;
+   if(titleIndex>=0&&callIndex>=0&&callIndex!==titleIndex+1){
+    const header=staffHeaders.splice(callIndex,1)[0];
+    const target=staffHeaders.findIndex(h=>/stillingstittel/i.test(h))+1;
+    staffHeaders.splice(target,0,header);
+    staffRows.forEach(row=>{const value=row.splice(callIndex,1)[0];row.splice(target,0,value)});
+    staffCallsignIndex=target;
     staffCourses=staffHeaders.map((h,i)=>courseRe.test(h)?i:-1).filter(i=>i>=0);
    }
    const alphaRows=staffRows.filter(row=>/^alpha\s+(?:01|02|20|30)$/i.test(String(row[staffCallsignIndex]??'')));
