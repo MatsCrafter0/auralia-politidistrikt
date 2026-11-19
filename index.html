@@ -11,7 +11,8 @@ function showStaff(){
   const title=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
   const call=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
   if(title>=0&&call>=0){
-   order.splice(call,1);
+   const position=order.indexOf(call);
+   order.splice(position,1);
    order.splice(order.indexOf(title)+1,0,call);
   }
  }
@@ -65,23 +66,19 @@ function loadStaff(){
    }
   }
   if(sheet==='Ledelsen'){
-   const titleIndex=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
-   const callIndex=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
-   if(titleIndex>=0&&callIndex>=0&&callIndex!==titleIndex+1){
-    const header=staffHeaders.splice(callIndex,1)[0];
-    const target=staffHeaders.findIndex(h=>/stillingstittel/i.test(h))+1;
-    staffHeaders.splice(target,0,header);
-    staffRows.forEach(row=>{const value=row.splice(callIndex,1)[0];row.splice(target,0,value)});
-    staffCallsignIndex=target;
+   const title=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
+   const call=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
+   if(call>=0){
+    staffRows.forEach((row,i)=>{row[call]=['Alpha 30','Alpha 20'][i]||row[call]});
+   }
+   if(!staffHeaders.some(h=>/^status$/i.test(h))){
+    const service=staffHeaders.findIndex(h=>/tjenestenr/i.test(h));
+    const at=service>=0?service+1:staffHeaders.length;
+    staffHeaders.splice(at,0,'Status');
+    staffRows.forEach(row=>row.splice(at,0,'Ikke registrert'));
+    if(staffCallsignIndex>=at)staffCallsignIndex++;
     staffCourses=staffHeaders.map((h,i)=>courseRe.test(h)?i:-1).filter(i=>i>=0);
    }
-   const alphaRows=staffRows.filter(row=>/^alpha\s+(?:01|02|20|30)$/i.test(String(row[staffCallsignIndex]??'')));
-   if(alphaRows[0])alphaRows[0][staffCallsignIndex]='Alpha 30';
-   if(alphaRows[1])alphaRows[1][staffCallsignIndex]='Alpha 20';
-  }
-  if(sheet==='Ledelsen'&&!staffHeaders.some(h=>/^status$/i.test(h))){
-   staffHeaders.push('Status');
-   staffRows.forEach(row=>row.push('Ikke registrert'));
   }
   showStaff();
  };
