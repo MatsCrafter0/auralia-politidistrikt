@@ -29,6 +29,7 @@ function loadStaff(){
   let previous=-1;
   staffRows=raw.slice(headerAt+1).map((r,ix)=>({r,ix})).filter(({r})=>{
    if(r.some(v=>String(v).trim().toLowerCase()===marker.toLowerCase()))return false;
+   if(sheet==='Sidekompetanse'&&r.some(v=>String(v??'').trim().toLocaleLowerCase('no')==='operasjonssentralen'))return false;
    if(sheet==='Ansatt Data')return !!String(r[3]??'').trim();
    if(sheet==='Oppsagte betjenter')return !!String(r[1]??'').trim()||!!String(r[2]??'').trim();
    if(sheet==='Sidekompetanse')return !!String(r[1]??'').trim()||!!String(r[2]??'').trim()||!!String(r[3]??'').trim();
