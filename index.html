@@ -54,6 +54,23 @@ function loadStaff(){
    if(sheet==='Sidekompetanse')return !!String(r[1]??'').trim()||!!String(r[2]??'').trim()||!!String(r[3]??'').trim();
    return !!String(r[3]??'').trim()||!!String(r[4]??'').trim();
   }).map(({r,ix})=>{const row=indices.map(i=>r[i]??'');row._sectionStart=previous>=0&&ix-previous>1;previous=ix;return row});
+  if(sheet==='Ledelsen'&&!staffHeaders.some(h=>/^(?:ansatt\s*dato|ansettelsesdato)$/i.test(h.trim()))){
+   // The directorate sheet stores the employment date in source column I.
+   // Keep the column visible even when the live sheet's header cell is empty.
+   const dateColumn=8;
+   const at=staffHeaders.findIndex(h=>/sist opp\/nedrykk/i.test(h));
+   const insertAt=at>=0?at:staffHeaders.length;
+   staffHeaders.splice(insertAt,0,'Ansatt dato');
+   staffRows.forEach(row=>row.splice(insertAt,0,''));
+   // Map by original row index so section separators do not shift dates.
+   const sourceRows=raw.slice(headerAt+1).map((r,ix)=>({r,ix})).filter(({r})=>{
+    if(r.some(v=>String(v).trim().toLowerCase()===marker.toLowerCase()))return false;
+    return !!String(r[3]??'').trim()||!!String(r[4]??'').trim();
+   });
+   staffRows.forEach((row,i)=>{row[insertAt]=String(sourceRows[i]?.r[dateColumn]??'')});
+   if(staffCallsignIndex>=insertAt)staffCallsignIndex++;
+   staffCourses=staffCourses.map(i=>i>=insertAt?i+1:i);
+  }
   if(sheet==='Ledelsen'){
    const calls=['Papa - 01','Papa - 02','Oscar 30','Oscar 20','Sierra 30','Sierra 20','Foxtrot 30','Foxtrot 20','Bravo 30','Bravo 20','Kilo 30','Kilo 20','UP 30','UP 20'];
    if(staffCallsignIndex<0){
