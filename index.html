@@ -11,7 +11,7 @@ function showStaff(){
 }
 function loadStaff(){
  const sheet=document.getElementById('staff-sheet').value,req=++staffRequest;
- document.getElementById('staff-status').textContent='Henter '+sheet+' …';
+ document.getElementById('staff-status').textContent='Henter '+sheet+' …';document.getElementById('staff-table').innerHTML='';
  const cb='staffCB'+req,sc=document.createElement('script');let done=false;
  const finish=()=>{delete window[cb];sc.remove()};
  window[cb]=res=>{
@@ -31,7 +31,7 @@ function loadStaff(){
  sc.src='https://docs.google.com/spreadsheets/d/'+staffId+'/gviz/tq?sheet='+encodeURIComponent(sheet)+'&headers=0&tqx='+encodeURIComponent('out:json;responseHandler:'+cb)+'&_='+Date.now();
  sc.onerror=()=>{if(done||req!==staffRequest)return;done=true;finish();document.getElementById('staff-status').textContent='Kunne ikke hente data. Kontroller lesetilgangen.'};
  document.head.appendChild(sc);
- setTimeout(()=>{if(!done&&req===staffRequest){done=true;finish();document.getElementById('staff-status').textContent='Regnearket svarte ikke.'}},12000);
+ setTimeout(()=>{if(!done&&req===staffRequest){done=true;finish();document.getElementById('staff-status').textContent='Regnearket svarte ikke.'}},7000);
 }
 document.getElementById('staff-sheet').onchange=loadStaff;
 document.getElementById('staff-search').oninput=showStaff;
