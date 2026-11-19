@@ -7,6 +7,15 @@ function showStaff(){
  const q=document.getElementById('staff-search').value.trim().toLocaleLowerCase('no');
  const sheet=document.getElementById('staff-sheet').value;
  const order=staffHeaders.map((_,i)=>i);
+ if(sheet==='Ledelsen'){
+  // Always render Stillingtittel immediately before Kallesignal, irrespective of source column order.
+  const call=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
+  const title=staffHeaders.findIndex(h=>/stilling(?:s)?tittel|stilling/i.test(h));
+  if(call>=0&&title>=0&&call!==title){
+   order.splice(order.indexOf(title),1);
+   order.splice(order.indexOf(call),0,title);
+  }
+ }
  const rows=staffRows.filter(r=>r.some(v=>String(v??'').toLocaleLowerCase('no').includes(q)));
  if(sheet==='Spesialenheten'){
   rows.forEach((r,i)=>{
