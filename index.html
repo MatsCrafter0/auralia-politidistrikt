@@ -16,6 +16,8 @@ function showStaff(){
    order.splice(order.indexOf(call),0,title);
   }
  }
+ const noteIndex=staffHeaders.findIndex(h=>/^notat$/i.test(h.trim()));
+ if(noteIndex>=0)order.splice(order.indexOf(noteIndex),1);
  const rows=staffRows.filter(r=>r.some(v=>String(v??'').toLocaleLowerCase('no').includes(q)));
  if(sheet==='Spesialenheten'){
   rows.forEach((r,i)=>{
