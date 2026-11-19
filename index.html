@@ -48,6 +48,16 @@ function loadStaff(){
     staffRows.forEach((row,i)=>{if(!String(row[staffCallsignIndex]??'').trim())row[staffCallsignIndex]=calls[i]||''});
    }
   }
+  if(sheet==='Ledelsen'){
+   const titleIndex=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
+   const callIndex=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
+   if(titleIndex>=0&&callIndex>=0&&callIndex>titleIndex){
+    [staffHeaders[titleIndex],staffHeaders[callIndex]]=[staffHeaders[callIndex],staffHeaders[titleIndex]];
+    staffRows.forEach(row=>{[row[titleIndex],row[callIndex]]=[row[callIndex],row[titleIndex]]});
+    staffCallsignIndex=titleIndex;
+    staffCourses=staffHeaders.map((h,i)=>courseRe.test(h)?i:-1).filter(i=>i>=0);
+   }
+  }
   if(sheet==='Ledelsen'&&!staffHeaders.some(h=>/^status$/i.test(h))){
    staffHeaders.push('Status');
    staffRows.forEach(row=>row.push('Ikke registrert'));
