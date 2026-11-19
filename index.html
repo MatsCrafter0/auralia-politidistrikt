@@ -6,7 +6,7 @@ const courseRe=/160.kurs|CAD|sambandskurs|jus|juss|PPS|bevis|førstehjelp|klasse
 function showStaff(){
  const q=document.getElementById('staff-search').value.trim().toLocaleLowerCase('no');
  const rows=staffRows.filter(r=>r.some(v=>String(v??'').toLocaleLowerCase('no').includes(q)));
- document.getElementById('staff-table').innerHTML='<thead><tr>'+staffHeaders.map(x=>'<th>'+staffEscape(x)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr class="'+(r._sectionStart?'staff-section-start':'')+'">'+r.map((v,i)=>{const course=staffCourses.includes(i);const val=course?(v===true||v===1?'✓ Fullført':v===false||v===0?'– Ikke fullført':String(v??'').trim()||'Ikke registrert'):String(v??'');const code=i===staffCallsignIndex?String(v??'').trim().toLowerCase():'';const m=code.match(/^(alpha|oscar|sierra|foxtrot|bravo|kilo|up|victor|lima|charlie|echo|delta|tango)(?:[ -]|$)/);const cl=course?(v===1||v===true?'course-yes':'course-no'):m?'staff-call staff-'+m[1]:'';return '<td class="'+cl+'">'+staffEscape(val)+'</td>'}).join('')+'</tr>').join('')+'</tbody>';
+ document.getElementById('staff-table').innerHTML='<thead><tr>'+staffHeaders.map(x=>'<th>'+staffEscape(x)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr class="'+(r._sectionStart?'staff-section-start':'')+'">'+r.map((v,i)=>{const course=staffCourses.includes(i);const val=course?(v===true||v===1?'✓ Fullført':v===false||v===0?'– Ikke fullført':String(v??'').trim()||'Ikke registrert'):String(v??'');const code=i===staffCallsignIndex?String(v??'').trim().toLowerCase():'';const normalizedCode=/^o[ -]?\d/.test(code)?'oscar '+code.replace(/^o[ -]?/,''):code;const m=normalizedCode.match(/^(alpha|oscar|sierra|foxtrot|bravo|kilo|up|victor|lima|charlie|echo|delta|tango)(?:[ -]|$)/);const cl=course?(v===1||v===true?'course-yes':'course-no'):m?'staff-call staff-'+m[1]:'';return '<td class="'+cl+'">'+staffEscape(val)+'</td>'}).join('')+'</tr>').join('')+'</tbody>';
  document.getElementById('staff-status').textContent=rows.length+' av '+staffRows.length+' rader vises i '+document.getElementById('staff-sheet').value+'.';
 }
 function loadStaff(){
@@ -47,6 +47,10 @@ function loadStaff(){
    }else{
     staffRows.forEach((row,i)=>{if(!String(row[staffCallsignIndex]??'').trim())row[staffCallsignIndex]=calls[i]||''});
    }
+  }
+  if(sheet==='Ledelsen'&&!staffHeaders.some(h=>/^status$/i.test(h))){
+   staffHeaders.push('Status');
+   staffRows.forEach(row=>row.push('Ikke registrert'));
   }
   showStaff();
  };
