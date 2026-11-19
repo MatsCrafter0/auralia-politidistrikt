@@ -15,7 +15,6 @@ function showStaff(){
    order.splice(order.indexOf(title)+1,0,call);
   }
  }
- const sheet=document.getElementById('staff-sheet').value;
  const rows=staffRows.filter(r=>r.some(v=>String(v??'').toLocaleLowerCase('no').includes(q)));
  if(sheet==='Spesialenheten'){
   rows.forEach((r,i)=>{
