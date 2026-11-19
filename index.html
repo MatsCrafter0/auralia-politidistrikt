@@ -7,15 +7,6 @@ function showStaff(){
  const q=document.getElementById('staff-search').value.trim().toLocaleLowerCase('no');
  const sheet=document.getElementById('staff-sheet').value;
  const order=staffHeaders.map((_,i)=>i);
- if(sheet==='Ledelsen'){
-  const title=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
-  const call=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
-  if(title>=0&&call>=0){
-   const position=order.indexOf(call);
-   order.splice(position,1);
-   order.splice(order.indexOf(title)+1,0,call);
-  }
- }
  const rows=staffRows.filter(r=>r.some(v=>String(v??'').toLocaleLowerCase('no').includes(q)));
  if(sheet==='Spesialenheten'){
   rows.forEach((r,i)=>{
@@ -79,6 +70,23 @@ function loadStaff(){
     if(staffCallsignIndex>=at)staffCallsignIndex++;
     staffCourses=staffHeaders.map((h,i)=>courseRe.test(h)?i:-1).filter(i=>i>=0);
    }
+  }
+  if(sheet==='Ledelsen'){
+   const title=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
+   const call=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
+   if(title<0||call<0)throw new Error('Ledelsen mangler Stillingstittel eller Kallesignal');
+   const desired=staffHeaders.map((_,i)=>i);
+   desired.splice(desired.indexOf(call),1);
+   desired.splice(desired.indexOf(title)+1,0,call);
+   const reorderedHeaders=desired.map(i=>staffHeaders[i]);
+   staffRows=staffRows.map(row=>{
+    const ordered=desired.map(i=>row[i]);
+    ordered._sectionStart=row._sectionStart;
+    return ordered;
+   });
+   staffHeaders=reorderedHeaders;
+   staffCallsignIndex=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
+   staffCourses=staffHeaders.map((h,i)=>courseRe.test(h)?i:-1).filter(i=>i>=0);
   }
   showStaff();
  };
