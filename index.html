@@ -54,6 +54,16 @@ function loadStaff(){
    if(sheet==='Sidekompetanse')return !!String(r[1]??'').trim()||!!String(r[2]??'').trim()||!!String(r[3]??'').trim();
    return !!String(r[3]??'').trim()||!!String(r[4]??'').trim();
   }).map(({r,ix})=>{const row=indices.map(i=>r[i]??'');row._sectionStart=previous>=0&&ix-previous>1;previous=ix;return row});
+  if(sheet==='Ansatt Data'&&!staffHeaders.some(h=>/^(?:ansatt\\s*dato|ansettelsesdato|ansettelse)$/i.test(h.trim()))){
+   // Ansatt Data: source column E is Ansettelse, even if its header is missing.
+   const at=staffHeaders.findIndex(h=>/^navn$/i.test(h.trim()))+1;
+   const insertAt=at>0?at:Math.min(3,staffHeaders.length);
+   const sourceRows=raw.slice(headerAt+1).filter(r=>!r.some(v=>String(v).trim().toLowerCase()===marker.toLowerCase())&&!!String(r[3]??'').trim());
+   staffHeaders.splice(insertAt,0,'Ansatt dato');
+   staffRows.forEach((row,i)=>row.splice(insertAt,0,sourceRows[i]?.[4]??''));
+   if(staffCallsignIndex>=insertAt)staffCallsignIndex++;
+   staffCourses=staffCourses.map(i=>i>=insertAt?i+1:i);
+  }
   if(sheet==='Ledelsen'&&!staffHeaders.some(h=>/^(?:ansatt\s*dato|ansettelsesdato)$/i.test(h.trim()))){
    // The directorate sheet stores the employment date in source column I.
    // Keep the column visible even when the live sheet's header cell is empty.
