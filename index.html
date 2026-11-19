@@ -74,19 +74,21 @@ function loadStaff(){
   if(sheet==='Ledelsen'){
    const title=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
    const call=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
-   if(title<0||call<0)throw new Error('Ledelsen mangler Stillingstittel eller Kallesignal');
-   const desired=staffHeaders.map((_,i)=>i);
-   desired.splice(desired.indexOf(call),1);
-   desired.splice(desired.indexOf(title)+1,0,call);
-   const reorderedHeaders=desired.map(i=>staffHeaders[i]);
-   staffRows=staffRows.map(row=>{
-    const ordered=desired.map(i=>row[i]);
-    ordered._sectionStart=row._sectionStart;
-    return ordered;
-   });
-   staffHeaders=reorderedHeaders;
-   staffCallsignIndex=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
-   staffCourses=staffHeaders.map((h,i)=>courseRe.test(h)?i:-1).filter(i=>i>=0);
+   if(title>=0&&call>=0&&call!==title+1){
+    const targetHeaders=staffHeaders.slice();
+    const moved=targetHeaders.splice(call,1)[0];
+    const at=targetHeaders.findIndex(h=>/stillingstittel/i.test(h))+1;
+    targetHeaders.splice(at,0,moved);
+    const indexOrder=targetHeaders.map(h=>staffHeaders.indexOf(h));
+    staffRows=staffRows.map(row=>{
+     const reordered=indexOrder.map(i=>row[i]);
+     reordered._sectionStart=row._sectionStart;
+     return reordered;
+    });
+    staffHeaders=targetHeaders;
+    staffCallsignIndex=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
+    staffCourses=staffHeaders.map((h,i)=>courseRe.test(h)?i:-1).filter(i=>i>=0);
+   }
   }
   showStaff();
  };
