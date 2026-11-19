@@ -36,7 +36,7 @@ function loadStaff(){
    return !!String(r[3]??'').trim()||!!String(r[4]??'').trim();
   }).map(({r,ix})=>{const row=indices.map(i=>r[i]??'');row._sectionStart=previous>=0&&ix-previous>1;previous=ix;return row});
   if(sheet==='Ledelsen'){
-   const calls=['Alpha 01','Alpha 02','Oscar 30','Oscar 20','Sierra 30','Sierra 20','Foxtrot 30','Foxtrot 20','Bravo 30','Bravo 20','Kilo 30','Kilo 20','UP 30','UP 20'];
+   const calls=['Alpha 30','Alpha 20','Oscar 30','Oscar 20','Sierra 30','Sierra 20','Foxtrot 30','Foxtrot 20','Bravo 30','Bravo 20','Kilo 30','Kilo 20','UP 30','UP 20'];
    if(staffCallsignIndex<0){
     const position=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
     const at=position<0?Math.min(2,staffHeaders.length):position+1;
@@ -57,6 +57,19 @@ function loadStaff(){
     staffCallsignIndex=titleIndex;
     staffCourses=staffHeaders.map((h,i)=>courseRe.test(h)?i:-1).filter(i=>i>=0);
    }
+  }
+  if(sheet==='Ledelsen'){
+   const titleIndex=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
+   const callIndex=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
+   if(titleIndex>=0&&callIndex>=0&&callIndex<titleIndex){
+    [staffHeaders[titleIndex],staffHeaders[callIndex]]=[staffHeaders[callIndex],staffHeaders[titleIndex]];
+    staffRows.forEach(row=>{[row[titleIndex],row[callIndex]]=[row[callIndex],row[titleIndex]]});
+    staffCallsignIndex=titleIndex;
+    staffCourses=staffHeaders.map((h,i)=>courseRe.test(h)?i:-1).filter(i=>i>=0);
+   }
+   const alphaRows=staffRows.filter(row=>/^alpha\s+(?:01|02|20|30)$/i.test(String(row[staffCallsignIndex]??'')));
+   if(alphaRows[0])alphaRows[0][staffCallsignIndex]='Alpha 30';
+   if(alphaRows[1])alphaRows[1][staffCallsignIndex]='Alpha 20';
   }
   if(sheet==='Ledelsen'&&!staffHeaders.some(h=>/^status$/i.test(h))){
    staffHeaders.push('Status');
