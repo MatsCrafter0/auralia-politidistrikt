@@ -44,7 +44,7 @@ function loadStaff(){
   if(headerAt<0){document.getElementById('staff-status').textContent='Fant ikke kolonneoverskriftene i '+sheet+'.';return}
   const headers=raw[headerAt].map(v=>String(v??'').trim());
   const indices=headers.map((v,i)=>v?i:-1).filter(i=>i>=0);
-  staffHeaders=indices.map(i=>headers[i]);staffCourses=staffHeaders.map((v,i)=>courseRe.test(v)?i:-1).filter(i=>i>=0);staffCallsignIndex=staffHeaders.findIndex(v=>/kallesignal/i.test(v));
+  staffHeaders=indices.map(i=>sheet==='Ansatt Data'&&/^ansettelse$/i.test(headers[i])?'Ansatt dato':headers[i]);staffCourses=staffHeaders.map((v,i)=>courseRe.test(v)?i:-1).filter(i=>i>=0);staffCallsignIndex=staffHeaders.findIndex(v=>/kallesignal/i.test(v));
   let previous=-1;
   staffRows=raw.slice(headerAt+1).map((r,ix)=>({r,ix})).filter(({r})=>{
    if(r.some(v=>String(v).trim().toLowerCase()===marker.toLowerCase()))return false;
