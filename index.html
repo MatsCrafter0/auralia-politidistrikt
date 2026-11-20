@@ -138,14 +138,22 @@ function loadStaff(){
     'up - leder':'UP 30',
     'up - nestleder':'UP 20'
    };
-   if(title>=0){
-    staffRows.forEach(row=>{
-     const position=String(row[title]??'').trim().toLocaleLowerCase('no').replace(/\s*[-–—]\s*/g,' - ').replace(/\s+/g,' ');
-     if(Object.prototype.hasOwnProperty.call(callsByTitle,position)){
-      row[staffCallsignIndex]=callsByTitle[position];
-     }
-    });
-   }
+   // The leadership sheet may have blank or differently formatted title cells.
+   // Use the visible position when available, otherwise the ordered 12-role list.
+   const callsInOrder=[
+    'Papa - 01','Papa - 02','Sierra 30','Sierra 20',
+    'Foxtrot 30','Foxtrot 20','Bravo 30','Bravo 20',
+    'Kilo 30','Kilo 20','UP 30','UP 20'
+   ];
+   staffRows.forEach((row,i)=>{
+    const position=title>=0
+     ?String(row[title]??'').normalize('NFKC').trim().toLocaleLowerCase('no')
+      .replace(/\s*[-–—]\s*/g,' - ').replace(/\s+/g,' ')
+     :'';
+    const matched=callsByTitle[position];
+    // This sheet has a fixed leadership ordering, so do not leave cells empty.
+    row[staffCallsignIndex]=matched||callsInOrder[i]||row[staffCallsignIndex]||'';
+   });
    if(!staffHeaders.some(h=>/^status$/i.test(h))){
     const service=staffHeaders.findIndex(h=>/tjenestenr/i.test(h));
     const at=service>=0?service+1:staffHeaders.length;
