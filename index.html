@@ -130,7 +130,7 @@ function loadStaff(){
    const title=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
    const call=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
    if(call>=0){
-    staffRows.forEach((row,i)=>{row[call]=['Papa - 01','Papa - 02'][i]||row[call]});
+    staffRows.forEach((row,i)=>{row[call]=['Papa - 01','Papa - 02','Oscar 30','Oscar 20','Sierra 30','Sierra 20','Foxtrot 30','Foxtrot 20','Bravo 30','Bravo 20','Kilo 30','Kilo 20','UP 30','UP 20'][i]||row[call]});
    }
    if(title>=0){
     if(staffRows[0])staffRows[0][title]='Politimester';
