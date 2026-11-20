@@ -114,27 +114,37 @@ function loadStaff(){
    staffCourses=staffCourses.map(i=>i>=insertAt?i+1:i);
   }
   if(sheet==='Ledelsen'){
-   const calls=['Papa - 01','Papa - 02','','','Sierra 30','Sierra 20','Foxtrot 30','Foxtrot 20','Bravo 30','Bravo 20','Kilo 30','Kilo 20','UP 30','UP 20'];
+   // Use the position title rather than the row index. Blank separator rows
+   // in Google Sheets must not shift the callsigns to the next positions.
+   const title=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
    if(staffCallsignIndex<0){
-    const position=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
-    const at=position<0?Math.min(2,staffHeaders.length):position+1;
+    const at=title<0?Math.min(2,staffHeaders.length):title+1;
     staffHeaders.splice(at,0,'Kallesignal');
-    staffRows.forEach((row,i)=>row.splice(at,0,calls[i]||''));
+    staffRows.forEach(row=>row.splice(at,0,''));
     staffCallsignIndex=at;
     staffCourses=staffCourses.map(i=>i>=at?i+1:i);
-   }else{
-    staffRows.forEach((row,i)=>{if(!String(row[staffCallsignIndex]??'').trim())row[staffCallsignIndex]=calls[i]||''});
    }
-  }
-  if(sheet==='Ledelsen'){
-   const title=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
-   const call=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
-   if(call>=0){
-    staffRows.forEach((row,i)=>{row[call]=['Papa - 01','Papa - 02','','','Sierra 30','Sierra 20','Foxtrot 30','Foxtrot 20','Bravo 30','Bravo 20','Kilo 30','Kilo 20','UP 30','UP 20'][i]||row[call]});
-   }
+   const callsByTitle={
+    'politimester':'Papa - 01',
+    'visepolitimester':'Papa - 02',
+    'ordenstjenesten - leder':'Sierra 30',
+    'ordenstjenesten - nestleder':'Sierra 20',
+    'påtale - leder':'Foxtrot 30',
+    'påtale - nestleder':'Foxtrot 20',
+    'bravo - rektor':'Bravo 30',
+    'bravo - ass. rektor':'Bravo 20',
+    'kripos - leder':'Kilo 30',
+    'kripos - nestleder':'Kilo 20',
+    'up - leder':'UP 30',
+    'up - nestleder':'UP 20'
+   };
    if(title>=0){
-    if(staffRows[0])staffRows[0][title]='Politimester';
-    if(staffRows[1])staffRows[1][title]='Visepolitimester';
+    staffRows.forEach(row=>{
+     const position=String(row[title]??'').trim().toLocaleLowerCase('no').replace(/\s*[-–—]\s*/g,' - ').replace(/\s+/g,' ');
+     if(Object.prototype.hasOwnProperty.call(callsByTitle,position)){
+      row[staffCallsignIndex]=callsByTitle[position];
+     }
+    });
    }
    if(!staffHeaders.some(h=>/^status$/i.test(h))){
     const service=staffHeaders.findIndex(h=>/tjenestenr/i.test(h));
