@@ -71,6 +71,21 @@ function loadStaff(){
    if(sheet==='Sidekompetanse')return !!String(r[1]??'').trim()||!!String(r[2]??'').trim()||!!String(r[3]??'').trim();
    return !!String(r[3]??'').trim()||!!String(r[4]??'').trim();
   }).map(({r,ix})=>{const row=indices.map(i=>r[i]??'');row._sectionStart=previous>=0&&ix-previous>1;previous=ix;return row});
+  // The source sheet stores training checkboxes in fixed columns (L,N,O,P,Q,S,U,V).
+  // GViz may return blank course headings; retain the original cell values for the profile.
+  if(!['Ansatt Data','Sidekompetanse','Oppsagte betjenter'].includes(sheet)){
+   const training=[{col:11,name:'160-kurs'},{col:13,name:'CAD'},{col:14,name:'Sambandskurs'},{col:15,name:sheet==='Opplæringsavdeling'?'Juss':'Jus'},{col:16,name:sheet==='Opplæringsavdeling'?'Bevis':'PPS'},{col:18,name:'Førstehjelp'},{col:20,name:'Klasse IP4'},{col:21,name:sheet==='Spesialenheten'||sheet==='Kripos'?'Klasse IP5':'Klasse IP3'}];
+   const sourceRows=raw.slice(headerAt+1).filter(r=>{
+    if(r.some(v=>String(v).trim().toLowerCase()===marker.toLowerCase()))return false;
+    return !!String(r[3]??'').trim()||!!String(r[4]??'').trim();
+   });
+   for(const item of training){
+    if(staffHeaders.some(h=>h.trim().toLowerCase()===item.name.toLowerCase()))continue;
+    staffHeaders.push(item.name);
+    staffRows.forEach((row,i)=>row.push(sourceRows[i]?.[item.col]??''));
+   }
+   staffCourses=staffHeaders.map((h,i)=>courseRe.test(h)?i:-1).filter(i=>i>=0);
+  }
   if(sheet==='Ansatt Data'&&!staffHeaders.some(h=>/^(?:ansatt\\s*dato|ansettelsesdato|ansettelse)$/i.test(h.trim()))){
    // Ansatt Data: source column E is Ansettelse, even if its header is missing.
    const at=staffHeaders.findIndex(h=>/^navn$/i.test(h.trim()))+1;
