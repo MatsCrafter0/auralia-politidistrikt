@@ -114,7 +114,7 @@ function loadStaff(){
    staffCourses=staffCourses.map(i=>i>=insertAt?i+1:i);
   }
   if(sheet==='Ledelsen'){
-   const calls=['Papa - 01','Papa - 02','Oscar 30','Oscar 20','Sierra 30','Sierra 20','Foxtrot 30','Foxtrot 20','Bravo 30','Bravo 20','Kilo 30','Kilo 20','UP 30','UP 20'];
+   const calls=['Papa - 01','Papa - 02','','','Sierra 30','Sierra 20','Foxtrot 30','Foxtrot 20','Bravo 30','Bravo 20','Kilo 30','Kilo 20','UP 30','UP 20'];
    if(staffCallsignIndex<0){
     const position=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
     const at=position<0?Math.min(2,staffHeaders.length):position+1;
@@ -130,7 +130,7 @@ function loadStaff(){
    const title=staffHeaders.findIndex(h=>/stillingstittel/i.test(h));
    const call=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
    if(call>=0){
-    staffRows.forEach((row,i)=>{row[call]=['Papa - 01','Papa - 02','Oscar 30','Oscar 20','Sierra 30','Sierra 20','Foxtrot 30','Foxtrot 20','Bravo 30','Bravo 20','Kilo 30','Kilo 20','UP 30','UP 20'][i]||row[call]});
+    staffRows.forEach((row,i)=>{row[call]=['Papa - 01','Papa - 02','','','Sierra 30','Sierra 20','Foxtrot 30','Foxtrot 20','Bravo 30','Bravo 20','Kilo 30','Kilo 20','UP 30','UP 20'][i]||row[call]});
    }
    if(title>=0){
     if(staffRows[0])staffRows[0][title]='Politimester';
