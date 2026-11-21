@@ -271,13 +271,7 @@ function loadStaff(){
    staffRows=staffRows.map((row,i)=>({row,i,group:rank(row)}))
     .sort((a,b)=>a.group-b.group||a.i-b.i)
     .map(({row})=>row);
-   staffRows.forEach((row,i)=>{
-    const titleAt=staffHeaders.findIndex(h=>/stillingstittel|stilling/i.test(h));
-    const callAt=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
-    const current=String(titleAt>=0?row[titleAt]??'':'')+' '+String(callAt>=0?row[callAt]??'':'');
-    const previous=i>0?String(titleAt>=0?staffRows[i-1][titleAt]??'':'')+' '+String(callAt>=0?staffRows[i-1][callAt]??'':''):'';
-    row._sectionStart=i>0&&(rank(row)===1&&rank(staffRows[i-1])===0||rank(row)===0&&/visepolitimester|papa\s*[-–]?\s*0?2/i.test(current)&&!/visepolitimester|papa\s*[-–]?\s*0?2/i.test(previous));
-   });
+   staffRows.forEach((row,i)=>{row._sectionStart=i>0&&rank(row)===1&&rank(staffRows[i-1])===0});
   }
   showStaff();
  };
