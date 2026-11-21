@@ -250,6 +250,29 @@ function loadStaff(){
     staffCourses=staffHeaders.map((h,i)=>courseRe.test(h)?i:-1).filter(i=>i>=0);
    }
   }
+  if(sheet==='Ledelsen'){
+   // Display order is independent of row order in Google Sheets.
+   // Keep the directorate first, followed by the requested departments.
+   const titleAt=staffHeaders.findIndex(h=>/stillingstittel|stilling/i.test(h));
+   const callAt=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
+   const rank=row=>{
+    const title=String(titleAt>=0?row[titleAt]??'':'').toLocaleLowerCase('no');
+    const call=String(callAt>=0?row[callAt]??'':'').toLocaleLowerCase('no');
+    const key=title+' '+call;
+    if(/politimester|papa/.test(key))return 0;
+    if(/påtale|foxtrot/.test(key))return 1;
+    if(/kripos|kilo/.test(key))return 2;
+    if(/politihøgskol|bravo|rektor/.test(key))return 3;
+    if(/(?:^|[^a-z])up(?:[^a-z]|$)|utrykningspolitiet/.test(key))return 4;
+    if(/ordenstjenesten|sierra/.test(key))return 5;
+    if(/hundepatruljen|victor/.test(key))return 6;
+    return 7;
+   };
+   staffRows=staffRows.map((row,i)=>({row,i,group:rank(row)}))
+    .sort((a,b)=>a.group-b.group||a.i-b.i)
+    .map(({row})=>row);
+   staffRows.forEach((row,i)=>{row._sectionStart=i>0&&rank(row)!==rank(staffRows[i-1])});
+  }
   showStaff();
  };
  script.src='https://docs.google.com/spreadsheets/d/'+staffId+'/gviz/tq?sheet='+encodeURIComponent(sheet)+'&headers=0&tqx='+encodeURIComponent('out:json;responseHandler:'+cb)+'&_='+Date.now();
