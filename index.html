@@ -3,6 +3,49 @@ const staffId='1AwRdS2opZMljcv7yISmtIsxd8Y89n4v-BGF-9dKbfxA';
 let staffRows=[],staffHeaders=[],staffCourses=[],staffCallsignIndex=-1,staffRequest=0;
 const staffEscape=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const courseRe=/160.kurs|CAD|sambandskurs|jus|juss|PPS|bevis|førstehjelp|klasse|kurs|kompetanse/i;
+let sideCache=null,sidePending=null;
+const normName=v=>String(v??'').normalize('NFKC').trim().toLocaleLowerCase('no').replace(/\s+/g,' ');
+function fetchSide(){
+ if(sideCache)return Promise.resolve(sideCache);
+ if(sidePending)return sidePending;
+ sidePending=new Promise((resolve,reject)=>{
+  const cb='sideCb'+Date.now(),script=document.createElement('script');let done=false;
+  const cleanup=()=>{delete window[cb];script.remove();clearTimeout(timer)};
+  const fail=()=>{if(done)return;done=true;cleanup();sidePending=null;reject(Error('Sidekompetanse utilgjengelig'))};
+  const timer=setTimeout(fail,10000);
+  window[cb]=res=>{
+   if(done)return;
+   if(res.status!=='ok'||!res.table)return fail();
+   done=true;cleanup();
+   const cols=res.table.cols||[],raw=(res.table.rows||[]).map(r=>cols.map((_,i)=>r.c?.[i]?.f??r.c?.[i]?.v??''));
+   const at=raw.findIndex(r=>r.some(v=>normName(v)==='discord - navn'));
+   if(at<0){sidePending=null;reject(Error('Mangler overskrifter'));return}
+   const h=raw[at].map(v=>String(v??'')),col=re=>h.findIndex(v=>re.test(v));
+   const d=col(/discord.*navn/i),ik=col(/ik.*navn/i),p=col(/stilling/i),c=col(/kallesignal/i),st=col(/^status$/i);
+   sideCache=raw.slice(at+1).map(r=>({discord:d>=0?String(r[d]??'').trim():'',ik:ik>=0?String(r[ik]??'').trim():'',stilling:p>=0?String(r[p]??'').trim():'',call:c>=0?String(r[c]??'').trim():'',status:st>=0?String(r[st]??'').trim():''})).filter(r=>r.discord||r.ik);
+   resolve(sideCache);
+  };
+  script.onerror=fail;
+  script.src='https://docs.google.com/spreadsheets/d/'+staffId+'/gviz/tq?sheet=Sidekompetanse&headers=0&tqx='+encodeURIComponent('out:json;responseHandler:'+cb)+'&_='+Date.now();
+  document.head.appendChild(script);
+ });
+ return sidePending;
+}
+function showSideOnCard(overlay,row){
+ const target=overlay.querySelector('.staff-profile-side');
+ const names=staffHeaders.map((h,i)=>/^(discord.*navn|ik.*navn|navn)$/i.test(h.trim())?normName(row[i]):'').filter(Boolean);
+ if(!names.length){target.textContent='Ingen navn å koble mot Sidekompetanse.';return}
+ fetchSide().then(items=>{
+  if(!target.isConnected)return;
+  const hits=items.filter(r=>[r.discord,r.ik].some(n=>n&&names.includes(normName(n))));
+  if(!hits.length){target.textContent='Ingen registrerte sidekompetanser.';return}
+  target.innerHTML='<div class="staff-profile-courses">'+hits.map(r=>{
+   const instructor=/instruktør|instruktor/i.test(r.stilling);
+   const title=r.stilling||r.call||'Sidekompetanse';
+   return '<div><span>'+staffEscape(title)+(r.call?' ('+staffEscape(r.call)+')':'')+'</span><strong>'+(instructor?'Instruktør':staffEscape(r.status||'Registrert'))+'</strong></div>';
+  }).join('')+'</div>';
+ }).catch(()=>{if(target.isConnected)target.textContent='Kunne ikke hente sidekompetanser.'});
+}
 function staffProfile(row){
  const get=re=>{const i=staffHeaders.findIndex(h=>re.test(String(h).trim()));return i<0?'':String(row[i]??'').trim()};
  const name=get(/^navn$|discord.*navn|ansatt.*navn/i)||get(/^discord$/i)||'Ansatt';
@@ -11,8 +54,9 @@ function staffProfile(row){
  const courses=staffCourses.map(i=>({name:staffHeaders[i],value:String(row[i]??'').trim()}));
  document.getElementById('staff-profile')?.remove();
  const overlay=document.createElement('div');overlay.id='staff-profile';overlay.className='staff-profile-overlay';
- overlay.innerHTML='<section class="staff-profile-card" role="dialog" aria-modal="true" aria-label="Personalkort for '+staffEscape(name)+'"><button type="button" class="staff-profile-close" aria-label="Lukk">×</button><div class="staff-profile-kicker">🚔 Auralia Politidistrikt</div><h2>👮 '+staffEscape(name)+'</h2><div class="staff-profile-fields">'+fields.filter(x=>x[1]).map(([k,v])=>'<div><small>'+staffEscape(k)+'</small><strong>'+staffEscape(v)+'</strong></div>').join('')+'</div><h3>🎓 Kurs og kompetanse</h3>'+(courses.length?'<div class="staff-profile-courses">'+courses.map(c=>'<div><span>'+staffEscape(c.name)+'</span><strong class="'+(label(c.value)==='Godkjent'?'staff-course-ok':label(c.value)==='Ikke Godkjent'?'staff-course-no':'')+'">'+staffEscape(label(c.value))+'</strong></div>').join('')+'</div>':'<p>Ingen kurskolonner er registrert i denne avdelingen.</p>')+'</section>';
+ overlay.innerHTML='<section class="staff-profile-card" role="dialog" aria-modal="true" aria-label="Personalkort for '+staffEscape(name)+'"><button type="button" class="staff-profile-close" aria-label="Lukk">×</button><div class="staff-profile-kicker">🚔 Auralia Politidistrikt</div><h2>👮 '+staffEscape(name)+'</h2><div class="staff-profile-fields">'+fields.filter(x=>x[1]).map(([k,v])=>'<div><small>'+staffEscape(k)+'</small><strong>'+staffEscape(v)+'</strong></div>').join('')+'</div><h3>🎓 Kurs og kompetanse</h3>'+(courses.length?'<div class="staff-profile-courses">'+courses.map(c=>'<div><span>'+staffEscape(c.name)+'</span><strong class="'+(label(c.value)==='Godkjent'?'staff-course-ok':label(c.value)==='Ikke Godkjent'?'staff-course-no':'')+'">'+staffEscape(label(c.value))+'</strong></div>').join('')+'</div>':'<p>Ingen kurskolonner er registrert i denne avdelingen.</p>')+'<h3>🚁 Sidekompetanser</h3><div class="staff-profile-side">Laster sidekompetanser …</div></section>';
  document.body.appendChild(overlay);
+ showSideOnCard(overlay,row);
  const close=()=>{overlay.remove();document.removeEventListener('keydown',onKey)};
  const onKey=e=>{if(e.key==='Escape')close()};
  overlay.addEventListener('click',e=>{if(e.target===overlay||e.target.closest('.staff-profile-close'))close()});
