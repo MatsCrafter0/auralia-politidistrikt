@@ -91,7 +91,7 @@ Studenten skal **aldri håndtere eller benytte våpen uten nødvendig opplæring
 
 ### Klasse 2
 
-Klasse 2 er betegnelsen som brukes i Auralia Politidistrikt for opplæringen studenthåndboken omtaler som IP4/MK2. Den operative opplæringen kan omfatte situasjonsforståelse, taktisk kommunikasjon, samarbeid, rollefordeling, sikkerhet og håndtering av krevende situasjoner.
+Klasse 2 omfatter operativ opplæring. Den operative opplæringen kan omfatte situasjonsforståelse, taktisk kommunikasjon, samarbeid, rollefordeling, sikkerhet og håndtering av krevende situasjoner.
 
 Studenten skal ikke utføre oppgaver utenfor eget kompetansenivå.
 
@@ -120,15 +120,15 @@ En god student trenger ikke kunne alt, men må vise vilje til å lære.
 
 ## 11. Varighet og vurdering før eksamen
 
-Studenthåndboken angir **minimum én uke studentperiode** før studenten kan vurderes for slutteksamen.
+Studentperioden skal vare i **minimum én uke** før studenten kan vurderes for slutteksamen.
 
-**Én uke gir ikke automatisk eksamensadgang.** Ansvarlig instruktør eller ledelse vurderer blant annet kompetanse, oppmøte, innsats, praktisk utførelse og egnethet. Dersom studenten trenger mer opplæring, kan perioden forlenges ifølge studenthåndboken.
+**Én uke gir ikke automatisk eksamensadgang.** Ansvarlig instruktør eller ledelse vurderer blant annet kompetanse, oppmøte, innsats, praktisk utførelse og egnethet. Dersom studenten trenger mer opplæring, kan perioden forlenges.
 
 **Varighet:** Studentperioden varer i minimum én uke. Videre opplæring og tidspunkt for slutteksamen vurderes individuelt av ansvarlig instruktør eller ledelse ut fra studentens progresjon og oppfyllelse av kravene.
 
 ## 12. Krav før slutteksamen
 
-Før studenten kan få tillatelse til slutteksamen, skal følgende krav fra studenthåndboken være oppfylt:
+Før studenten kan få tillatelse til slutteksamen, skal følgende krav være oppfylt:
 
 * [ ] Nødvendig opplæring gjennomført.
 * [ ] Obligatoriske kurs bestått.
@@ -161,7 +161,3 @@ Dette innebærer større ansvar og forventninger til selvstendighet. Videre lær
 Etter fullført studentperiode skal studenten ha et godt grunnlag innen politiets rolle og ansvar, juridiske prosedyrer, samband, CAD, patruljetjeneste, trafikk og utrykningskjøring, våpensikkerhet, operativ tjeneste, kommunikasjon, konflikthåndtering og samarbeid.
 
 **Målet er en politibetjent som er trygg i rollen, kjenner sine begrensninger, tar gode beslutninger og behandler både kollegaer og publikum med respekt.**
-
-***
-
-_Bygger på «Politiets studenthåndbok», tilpasset Auralia Politidistrikt og eksisterende operative instrukser._
