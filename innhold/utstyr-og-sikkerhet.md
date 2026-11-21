@@ -1,5 +1,3 @@
-age "Utstyr og sikkerhet" — id: yGrb4PgrIIeNer4fYsYi, path: /utstyr-og-sikkerhet
-
 # Utstyr og sikkerhet
 
 Denne delen forklarer **hvilket utstyr som kan brukes i tjenesten, og hvilke sikkerhetskrav som gjelder**. Riktig bruk av kjøretøy, maktmidler og uniform er avgjørende for en troverdig og forsvarlig politirolle.
