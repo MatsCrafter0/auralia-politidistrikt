@@ -1,5 +1,3 @@
-age "Spesielle hendelser" — id: cWyCEP9FTZtfBeY4EvcM, path: /spesielle-hendelser
-
 # Spesielle hendelser
 
 Noen oppdrag krever andre vurderinger enn vanlig patruljetjeneste. Denne delen beskriver **hvordan tjenestepersoner skal opptre i ekstraordinære og krevende rollespillsituasjoner**.
