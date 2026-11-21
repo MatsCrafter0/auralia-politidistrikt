@@ -1,5 +1,3 @@
-age "Operativ tjeneste" — id: PrDHJC4SR2qUYJeSVVBO, path: /operativ-tjeneste
-
 # Operativ tjeneste
 
 Denne delen samler reglene som styrer **den daglige tjenesten ute i felt**. Målet er at alle patruljer skal opptre trygt, koordinert og profesjonelt, både overfor sivile og andre nødetater.
