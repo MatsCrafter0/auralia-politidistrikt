@@ -1,5 +1,3 @@
-age "Lovverk og påtale" — id: DLMP3Q0GOFB1PDWAjZMv, path: /lovverk-og-patale
-
 # Lovverk og påtale
 
 Denne delen handler om **rettssikkerhet og korrekt straffesaksbehandling** i UNIT RP. Den gir veiledning om hvordan politiet skal håndtere en sak fra pågripelse til eventuell videre behandling hos påtalemyndighet eller domstol.
