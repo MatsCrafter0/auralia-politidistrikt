@@ -1,5 +1,3 @@
-age "Sjekkliste for vaktstart og vaktslutt" — id: tMXZc3iCn9Edr17LYDGk, path: /operativ-tjeneste/sjekkliste-for-vaktstart-og-vaktslutt
-
 # Sjekkliste for vaktstart og vaktslutt
 
 **Auralia Politidistrikt – Operativ tjeneste**
