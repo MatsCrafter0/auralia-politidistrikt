@@ -5,7 +5,7 @@ tags:
 
 # Kjøretøy og kjøretøytillatelser
 
-**Kun kjøretøyene fra de innsendte UNIT-bildene benyttes. Eksempelhåndbokens kjøretøyliste er forkastet.**
+**Kun godkjente tjenestekjøretøy kan benyttes i henhold til gjeldende kjøretøytillatelser.**
 
 | Tilgang                                            | Kjøretøy                                            |
 | -------------------------------------------------- | --------------------------------------------------- |
