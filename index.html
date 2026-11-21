@@ -71,6 +71,28 @@ function loadStaff(){
    if(sheet==='Sidekompetanse')return !!String(r[1]??'').trim()||!!String(r[2]??'').trim()||!!String(r[3]??'').trim();
    return !!String(r[3]??'').trim()||!!String(r[4]??'').trim();
   }).map(({r,ix})=>{const row=indices.map(i=>r[i]??'');row._sectionStart=previous>=0&&ix-previous>1;previous=ix;return row});
+  // Sidekompetanse: vis HELI-03–HELI-14 også når plassene er tomme i arket.
+  // Eksisterende rader og registrerte verdier fra Google Sheets beholdes.
+  if(sheet==='Sidekompetanse'){
+   const callAt=staffHeaders.findIndex(h=>/kallesignal/i.test(h));
+   const statusAt=staffHeaders.findIndex(h=>/^status$/i.test(h.trim()));
+   if(callAt>=0){
+    const heliCode=row=>String(row[callAt]??'').trim().toUpperCase().replace(/\\s+/g,'');
+    const present=new Set(staffRows.map(heliCode));
+    let after=staffRows.findIndex(row=>heliCode(row)==='HELI-02');
+    if(after<0)after=staffRows.findIndex(row=>heliCode(row)==='HELI-01');
+    for(let n=3;n<=14;n++){
+     const code='HELI-'+String(n).padStart(2,'0');
+     if(present.has(code))continue;
+     const row=Array(staffHeaders.length).fill('');
+     row[callAt]=code;
+     if(statusAt>=0)row[statusAt]='Inaktiv';
+     if(after>=0){staffRows.splice(++after,0,row)}
+     else{staffRows.push(row)}
+     present.add(code);
+    }
+   }
+  }
   // The source sheet stores training checkboxes in fixed columns (L,N,O,P,Q,S,U,V).
   // GViz may return blank course headings; retain the original cell values for the profile.
   if(!['Ansatt Data','Sidekompetanse','Oppsagte betjenter'].includes(sheet)){
