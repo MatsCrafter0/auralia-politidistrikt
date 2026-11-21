@@ -202,14 +202,16 @@ function loadStaff(){
     'kripos - leder':'Kilo 30',
     'kripos - nestleder':'Kilo 20',
     'up - leder':'UP 30',
-    'up - nestleder':'UP 20'
+    'up - nestleder':'UP 20',
+    'hundepatruljen - leder':'Victor 30',
+    'hundepatruljen - nestleder':'Victor 20'
    };
    // The leadership sheet may have blank or differently formatted title cells.
-   // Use the visible position when available, otherwise the ordered 12-role list.
+   // Use the visible position when available, otherwise the ordered 14-role list.
    const callsInOrder=[
     'Papa - 01','Papa - 02','Sierra 30','Sierra 20',
     'Foxtrot 30','Foxtrot 20','Bravo 30','Bravo 20',
-    'Kilo 30','Kilo 20','UP 30','UP 20'
+    'Kilo 30','Kilo 20','UP 30','UP 20','Victor 30','Victor 20'
    ];
    staffRows.forEach((row,i)=>{
     const position=title>=0
