@@ -32,5 +32,3 @@ Erstatt B-30 med eget kallesignal.
 ## Forkortelser
 
 AMK = ambulansetjenesten; FREG = folkeregister; AUTOSYS = motorvognregister; OPS = ordnet på stedet; UAS = ute av stand; ZULU = fangetransport; kode 99 = kidnapping av offentlig tjenesteperson; kode 100 = umiddelbar bistand.
-
-Kanalnumre og øvrige koder fra eksempelhåndboken er ikke automatisk UNIT-standard.
