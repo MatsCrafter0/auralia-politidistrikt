@@ -59,12 +59,12 @@ Ved overføring fra én avdeling til en annen gjelder følgende retningslinjer f
 
 ## Permittering og gjeninnsettelse
 
-Dokumentet fastsetter følgende:
+Følgende regler gjelder:
 
 - En betjent som **ikke har vært på vakt på 21 dager**, blir permittert i **2 måneder**. Dersom vedkommende ikke har vært på vakt i permitteringsperioden, blir betjenten oppsagt.
 - Permittering registreres i ansattlisten.
 - En permittert betjent kan bli gjeninnsatt i Ordenstjenesten med **samme rangering**.
 - En betjent som har vært borte i **over 2 måneder og 3 uker** og er blitt oppsagt, kan komme tilbake, men må **starte på nytt som student**.
-- Ved gjeninnsettelse beskriver dokumentet også **innplassering som PB1**, med etterfølgende vurdering fra ledelsen i Ordenstjenesten om eventuelt opprykk til høyere rangering.
+- Ved gjeninnsettelse er **innplassering som PB1** også angitt, med etterfølgende vurdering fra ledelsen i Ordenstjenesten om eventuelt opprykk til høyere rangering.
 
-**Merk:** Dokumentet omtaler både gjeninnsettelse med samme rangering og innplassering som PB1. Disse bestemmelsene må avklares av ledelsen i den konkrete saken; denne siden fastsetter ikke en ny prioritering mellom dem.
+**Ved gjeninnsettelse:** Dersom det er uklart om tidligere rangering skal beholdes eller betjenten skal innplasseres som PB1, skal ledelsen avklare rangeringen i den konkrete saken.
