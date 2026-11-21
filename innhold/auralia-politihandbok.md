@@ -67,7 +67,7 @@ Retningslinjer for straffeprosess, rettslige prosedyrer og rettssikkerhet i serv
 
 Håndboken gjelder **Auralia Politidistrikt på UNIT RP** og er utarbeidet for fiktiv polititjeneste og rollespill. Den er **ikke en gjengivelse av norsk lovgivning**.
 
-Ved motstrid gjelder særskilt fastsatte Auralia-regler foran eldre eksempeltekster. Følg alltid gjeldende instrukser og avklar uklarheter med relevant ledelse.
+Ved motstrid eller uklarheter skal gjeldende instrukser fra politiledelsen følges.
 
 **Auralia Politidistrikt**
 
