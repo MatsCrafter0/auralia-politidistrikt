@@ -1,5 +1,3 @@
-age "Innsatsledelse og kommandolinjer" — id: mU1c3LNiQQB0V2JsxrG1, path: /operativ-tjeneste/innsatsledelse-og-kommandolinjer
-
 # Innsatsledelse og kommandolinjer
 
 **Auralia Politidistrikt – Operativ tjeneste**
