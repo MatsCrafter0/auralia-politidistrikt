@@ -115,6 +115,14 @@ function loadStaff(){
    if(sheet==='Sidekompetanse')return !!String(r[1]??'').trim()||!!String(r[2]??'').trim()||!!String(r[3]??'').trim();
    return !!String(r[3]??'').trim()||!!String(r[4]??'').trim();
   }).map(({r,ix})=>{const row=indices.map(i=>r[i]??'');row._sectionStart=previous>=0&&ix-previous>1;previous=ix;return row});
+  if(sheet==='Sidekompetanse'){
+   // Section headings are single-cell rows. Put spacing before each heading,
+   // never between a heading and its first employee.
+   const isHeading=row=>row.filter(v=>String(v??'').trim()).length===1;
+   staffRows.forEach((row,i)=>{
+    row._sectionStart=i>0&&isHeading(row);
+   });
+  }
   // Sidekompetanse: vis HELI-03–HELI-14 også når plassene er tomme i arket.
   // Eksisterende rader og registrerte verdier fra Google Sheets beholdes.
   if(sheet==='Sidekompetanse'){
