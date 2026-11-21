@@ -1,5 +1,3 @@
-age "Obligatorisk studentperiode – Auralia Politidistrikt" — id: 0cBT2XbqlCqJXCVj2A9C, path: /introduksjon-og-organisasjon/obligatorisk-studentperiode
-
 # Obligatorisk studentperiode – Auralia Politidistrikt
 
 **Gjelder for:** Politihøgskolestudenter \[Lima] ved Politihøgskolen \[Bravo] i Auralia Politidistrikt.
