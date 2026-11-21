@@ -45,5 +45,3 @@ Kontroller gjeldende farenivå ved vaktstart. Endringer skal kunngjøres i offis
 * Maks 180 pistolskudd og 220 SMG-/rifleskudd.
 * Klasse 3 medbringes etter gjeldende instruks; maks 2 per bil der mulig.
 * Alle må ha makker. To Lima-studenter kan ikke patruljere alene sammen.
-
-**Merknad:** Utrustningstallene stammer fra eksempelhåndboken og er ikke en oversikt over serverens tilgjengelige våpen.
