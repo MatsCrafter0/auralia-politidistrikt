@@ -271,7 +271,7 @@ function loadStaff(){
    staffRows=staffRows.map((row,i)=>({row,i,group:rank(row)}))
     .sort((a,b)=>a.group-b.group||a.i-b.i)
     .map(({row})=>row);
-   staffRows.forEach(row=>{row._sectionStart=false});
+   staffRows.forEach((row,i)=>{row._sectionStart=i>0&&rank(row)!==rank(staffRows[i-1])&&rank(row)<=1});
   }
   showStaff();
  };
