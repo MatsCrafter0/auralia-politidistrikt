@@ -65,7 +65,7 @@ Retningslinjer for straffeprosess, rettslige prosedyrer og rettssikkerhet i serv
 
 ### Om håndboken
 
-Håndboken gjelder **Auralia Politidistrikt på UNIT RP** og er utarbeidet for fiktiv polititjeneste og rollespill. Den er **ikke en gjengivelse av norsk lovgivning**.
+Håndboken gjelder **Auralia Politidistrikt på UNIT RP**. Retningslinjene gjelder fiktiv polititjeneste og rollespill, ikke norsk lovgivning.
 
 Ved motstrid eller uklarheter skal gjeldende instrukser fra politiledelsen følges.
 
