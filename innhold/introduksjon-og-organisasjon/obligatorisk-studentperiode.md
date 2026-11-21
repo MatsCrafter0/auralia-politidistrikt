@@ -126,7 +126,7 @@ Studenthåndboken angir **minimum én uke studentperiode** før studenten kan vu
 
 **Én uke gir ikke automatisk eksamensadgang.** Ansvarlig instruktør eller ledelse vurderer blant annet kompetanse, oppmøte, innsats, praktisk utførelse og egnethet. Dersom studenten trenger mer opplæring, kan perioden forlenges ifølge studenthåndboken.
 
-> **Avklaring av tidsramme:** Studenthåndboken bruker både «minimum 1 uke» og formuleringen «i løpet av disse to ukene». Den tidligere instruksen i Auralia Politihåndbok oppga dessuten en maksimal periode på 4 uker. Inntil ledelsen avklarer dette, skal ingen av de motstridende formuleringene tolkes som en ny fastsatt maksimumsgrense.
+**Varighet:** Studentperioden varer i minimum én uke. Videre opplæring og tidspunkt for slutteksamen vurderes individuelt av ansvarlig instruktør eller ledelse ut fra studentens progresjon og oppfyllelse av kravene.
 
 ## 12. Krav før slutteksamen
 
