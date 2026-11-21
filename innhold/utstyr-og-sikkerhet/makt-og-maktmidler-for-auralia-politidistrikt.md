@@ -55,4 +55,4 @@ Tvangsmidler inkluderer arrestasjon, ransaking, beslaglegging og andre tiltak so
 7. **Slag og spark:** Stor skaderisiko, krever nødvendig og forholdsmessig grunnlag.
 8. **Skytevåpen:** Ytterste nivå ved alvorlig, umiddelbar livsfare, etter instruks.
 
-Nivåene er en vurderingsmodell og trenger ikke gjennomføres i fast rekkefølge. Denne siden fastsetter ikke hvilke våpen som finnes på serveren.
+Nivåene er en vurderingsmodell og trenger ikke gjennomføres i fast rekkefølge.
