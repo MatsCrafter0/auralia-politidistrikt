@@ -5,11 +5,11 @@ tags:
 
 # Straffeprosess og rettslige prosedyrer
 
-> **UNIT RP:** Fiktive rettsprosedyrer for rollespill, ikke norsk rett. Innholdet er omstrukturert fra originaldokumentet for enklere oppslag. Steds- og etatsnavn er beholdt fra originalen.
+> **UNIT RP:** Disse rettsprosedyrene gjelder serverens fiktive rettssystem og er ikke norsk rett.
 
 ## Hurtigoversikt over frister og grenser
 
-| Tema                              | Regel i originaldokumentet                                         |
+| Tema                              | Gjeldende regel                                         |
 | --------------------------------- | ------------------------------------------------------------------ |
 | Advokatkontakt                    | Senest 1 time etter ankomst til politistasjonen                    |
 | Advokat ikke tilgjengelig         | Vent 15 minutter før saken kan fortsette uten advokat              |
