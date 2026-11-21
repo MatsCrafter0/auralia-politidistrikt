@@ -50,7 +50,7 @@ Beskrivelsene nedenfor forklarer hva hver rolle består av og hvilke arbeidsomr�
 
 **I praksis:** Oscar har en kontrollfunksjon. Plasseringen i den administrative rangstigen betyr ikke at alle medlemmer automatisk leder ordinære politioppdrag.
 
-### 4. Politimesterstabben \[Papa]
+### 4. Politimester og Visepolitimester
 
 **Funksjon:** Overordnet administrativ ledelse og støtte for politidistriktets drift.
 
