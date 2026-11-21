@@ -1,5 +1,3 @@
-age "Introduksjon og organisasjon" — id: g2zlrjEbJ0yj3buvIsJM, path: /introduksjon-og-organisasjon
-
 # Introduksjon og organisasjon
 
 Denne delen gir deg oversikt over hvordan **Auralia Politidistrikt** er bygget opp, hvilke forventninger som gjelder for alle ansatte, og hvordan ansvar og myndighet er fordelt.
