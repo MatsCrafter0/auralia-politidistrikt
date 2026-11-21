@@ -50,18 +50,29 @@ Beskrivelsene nedenfor forklarer hva hver rolle består av og hvilke arbeidsomr�
 
 **I praksis:** Oscar har en kontrollfunksjon. Plasseringen i den administrative rangstigen betyr ikke at alle medlemmer automatisk leder ordinære politioppdrag.
 
-### 4. Politimester og Visepolitimester
+### 4. Politimester \[Papa]
 
-**Funksjon:** Overordnet administrativ ledelse og støtte for politidistriktets drift.
+**Funksjon:** Øverste daglige ledelse av politidistriktet innenfor politidirektoratets rammer.
 
 **Ansvarsområder:**
 
-* Bidra til samordning av avdelinger og lederfunksjoner.
+* Lede og samordne distriktets avdelinger og lederfunksjoner.
 * Følge opp at instrukser, rutiner og beslutninger blir kommunisert og etterlevd.
-* Håndtere overordnede drifts- og ledelsesspørsmål innenfor sitt ansvarsområde.
-* Støtte avdelingsledelsene ved behov for avklaringer og koordinering.
+* Håndtere overordnede drifts- og ledelsesspørsmål.
+* Ta beslutninger om farenivå innenfor gjeldende instruks.
 
-**I praksis:** Papa fungerer som en sentral del av distriktets ledelse. **Kun Alfa og Papa** kan beslutte endring til oransje og rødt farenivå.
+### 5. Visepolitimester \[Papa]
+
+**Funksjon:** Stedfortredende ledelse og støtte til politimesteren.
+
+**Ansvarsområder:**
+
+* Bistå politimesteren med drift, koordinering og oppfølging.
+* Følge opp avdelingsledelsene og bidra til at instrukser etterleves.
+* Ivareta delegerte lederoppgaver og fungere som stedfortreder ved behov.
+* Ta beslutninger om farenivå innenfor gjeldende instruks og myndighet.
+
+**I praksis:** Politimester og visepolitimester tilhører Papa. **Kun Alfa og Papa** kan beslutte endring til oransje og rødt farenivå.
 
 ### 5. Avd. Ledelse Påtale \[Foxtrot]
 
