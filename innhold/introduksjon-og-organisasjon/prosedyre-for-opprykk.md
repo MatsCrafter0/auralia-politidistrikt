@@ -68,7 +68,3 @@ Dokumentet fastsetter følgende:
 - Ved gjeninnsettelse beskriver dokumentet også **innplassering som PB1**, med etterfølgende vurdering fra ledelsen i Ordenstjenesten om eventuelt opprykk til høyere rangering.
 
 **Merk:** Dokumentet omtaler både gjeninnsettelse med samme rangering og innplassering som PB1. Disse bestemmelsene må avklares av ledelsen i den konkrete saken; denne siden fastsetter ikke en ny prioritering mellom dem.
-
----
-
-*Retningslinjene bygger på dokumentet «Prosedyre for opprykk», signert Matheo Rossnes.*
