@@ -74,7 +74,7 @@ Beskrivelsene nedenfor forklarer hva hver rolle består av og hvilke arbeidsomr�
 
 **I praksis:** Politimester og visepolitimester tilhører Papa. **Kun Alfa og Papa** kan beslutte endring til oransje og rødt farenivå.
 
-### 5. Avd. Ledelse Påtale \[Foxtrot]
+### 6. Avd. Ledelse Påtale \[Foxtrot]
 
 **Funksjon:** Ledelse av påtalemyndighetens arbeid og rettslige saksbehandling.
 
@@ -87,7 +87,7 @@ Beskrivelsene nedenfor forklarer hva hver rolle består av og hvilke arbeidsomr�
 
 **I praksis:** Foxtrot arbeider med den rettslige delen av politiets saker og samarbeider med blant annet etterforskere og patruljer når det er relevant.
 
-### 6. Avd. Ledelse Kripos \[Kilo]
+### 7. Avd. Ledelse Kripos \[Kilo]
 
 **Funksjon:** Ledelse av avdelingens etterforskningsarbeid.
 
@@ -100,7 +100,7 @@ Beskrivelsene nedenfor forklarer hva hver rolle består av og hvilke arbeidsomr�
 
 **I praksis:** Kilo har særlig fokus på etterforskning og oppklaring av saker, fremfor ordinær patruljetjeneste.
 
-### 7. Avd. Ledelse Utrykningspolitiet \[UP]
+### 8. Avd. Ledelse Utrykningspolitiet \[UP]
 
 **Funksjon:** Ledelse av Utrykningspolitiets trafikkrettede og operative arbeid.
 
@@ -113,7 +113,7 @@ Beskrivelsene nedenfor forklarer hva hver rolle består av og hvilke arbeidsomr�
 
 **I praksis:** UP-ledelsen følger opp enheter som arbeider med trafikkrelaterte oppdrag og avdelingens øvrige operative funksjoner.
 
-### 8. Avd. Ledelse Politihøgskolen \[Bravo]
+### 9. Avd. Ledelse Politihøgskolen \[Bravo]
 
 **Funksjon:** Ledelse av utdanning og opplæring av politihøgskolestudenter.
 
@@ -126,7 +126,7 @@ Beskrivelsene nedenfor forklarer hva hver rolle består av og hvilke arbeidsomr�
 
 **I praksis:** Bravo har et særlig ansvar for at nye betjenter får forståelse for politiets rutiner, sikkerhet, kommunikasjon og rolleutøvelse. Studentperioden følger egen instruks.
 
-### 9. Avd. Ledelse Ordenstjenesten \[Sierra]
+### 10. Avd. Ledelse Ordenstjenesten \[Sierra]
 
 **Funksjon:** Ledelse av den ordinære patrulje- og førstelinjetjenesten.
 
@@ -139,7 +139,7 @@ Beskrivelsene nedenfor forklarer hva hver rolle består av og hvilke arbeidsomr�
 
 **I praksis:** Sierra-ledelsen arbeider tett på den ordinære politihverdagen og sørger for at avdelingen fungerer som en profesjonell førstelinjetjeneste.
 
-### 10. Ordinære betjenter
+### 11. Ordinære betjenter
 
 **Funksjon:** Tjenestepersoner som utfører politiets ordinære oppgaver.
 
@@ -152,7 +152,7 @@ Beskrivelsene nedenfor forklarer hva hver rolle består av og hvilke arbeidsomr�
 
 **I praksis:** Ordinære betjenter står for mye av den daglige tjenesteutøvelsen og skal følge både administrative og operative instrukser.
 
-### 11. Politihøgskole Studenter \[Lima]
+### 12. Politihøgskole Studenter \[Lima]
 
 **Funksjon:** Tjenestepersoner under obligatorisk opplæring ved Politihøgskolen.
 
