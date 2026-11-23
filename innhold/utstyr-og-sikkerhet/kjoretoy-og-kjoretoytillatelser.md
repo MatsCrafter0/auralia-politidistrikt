@@ -7,14 +7,28 @@ tags:
 
 **Kun godkjente tjenestekjøretøy kan benyttes i henhold til gjeldende kjøretøytillatelser.**
 
-| Tilgang                                            | Kjøretøy                                            |
-| -------------------------------------------------- | --------------------------------------------------- |
-| Studentbiler – Lima / Echo / Innsatsleder          | To avbildede studentmodeller (navn ikke oppgitt)    |
-| Sierra og oppover                                  | Everon, Odyssey V2, Rhinehart V2, Jugular, Gauntlet |
-| Innsatsleder og enhetsleder                        | Scout, Drafter                                      |
-| SU; SU+ for UP og enhetsledere med godkjent kurs   | Neon, Sentinel                                      |
-| UEH, Kripos og enhetsledere med godkjent hel sivil | Busta, Drafters, Granger, Reblas, Rhinehart, Xlss   |
+Oversikten nedenfor viser kjøretøyene og brukskravene som gjelder i Auralia Politidistrikt.
+
+| Kjøretøy | Brukskrav / Info |
+| --- | --- |
+| Benefactor Imperial | Lima+ [Innsatsleder livery] |
+| Everon | PB1+ |
+| Odyssey V2 | PB1+ |
+| Rhinehart V2 | PB1+ |
+| Jugular | PB1+ |
+| Gauntlet | PB1+ |
+| Vapid Scout | Politiførstebetjent+ |
+| Neon | Krever SU-kurs |
+| Sentinel | Krever SU-kurs |
+| Busta | UEH, Kripos, Spesialenheten, godkjent hel sivil kurs |
+| Drafters | UEH, Kripos, Spesialenheten, godkjent hel sivil kurs |
+| Granger | UEH, Kripos, Spesialenheten, godkjent hel sivil kurs |
+| Reblas | UEH, Kripos, Spesialenheten, godkjent hel sivil kurs |
+| Rhinehart | UEH, Kripos, Spesialenheten, godkjent hel sivil kurs |
+| XLS | UEH, Kripos, Spesialenheten, godkjent hel sivil kurs |
+
+## Bruk av kjøretøy
 
 Bruk kun kjøretøy du har tillatelse til gjennom grad, avdeling, kurs eller særskilt godkjenning. Misbruk kan medføre reaksjoner.
 
-**Ikke fastsatt:** Om høyere grader automatisk arver lavere graders kjøretøytillatelser.
+**Merk:** Kravene er gjengitt fra den oppdaterte kjøretøyoversikten. For Benefactor Imperial er «Innsatsleder livery» spesifisert i oversikten.
