@@ -25,7 +25,7 @@ const courseRe=/160.kurs|CAD|sambandskurs|jus|juss|PPS|bevis|førstehjelp|klasse
 let sideCache=null,sidePending=null,sideCacheAt=0;
 const normName=v=>String(v??'').normalize('NFKC').trim().toLocaleLowerCase('no').replace(/\s+/g,' ');
 function fetchSide(){
- if(sideCache&&Date.now()-sideCacheAt<30000)return Promise.sideCacheAt=Date.now();sidePending=null;resolve(sideCache);
+ if(sideCache&&Date.now()-sideCacheAt<30000)return Promise.resolve(sideCache);
  if(sidePending)return sidePending;
  sidePending=new Promise((resolve,reject)=>{
   const cb='sideCb'+Date.now(),script=document.createElement('script');let done=false;
@@ -42,7 +42,7 @@ function fetchSide(){
    const h=raw[at].map(v=>String(v??'')),col=re=>h.findIndex(v=>re.test(v));
    const d=col(/discord/i),ik=col(/ik.*navn|^navn$/i),p=col(/stilling/i),c=col(/kallesignal/i),st=col(/^status$/i);
    sideCache=raw.slice(at+1).map(r=>({discord:d>=0?String(r[d]??'').trim():'',ik:ik>=0?String(r[ik]??'').trim():'',stilling:p>=0?String(r[p]??'').trim():'',call:c>=0?String(r[c]??'').trim():'',status:st>=0?String(r[st]??'').trim():''})).filter(r=>r.discord||r.ik);
-   resolve(sideCache);
+   sideCacheAt=Date.now();sidePending=null;resolve(sideCache);
   };
   script.onerror=fail;
   script.src='https://docs.google.com/spreadsheets/d/'+staffId+'/gviz/tq?sheet=Sidekompetanse&headers=0&tqx='+encodeURIComponent('out:json;responseHandler:'+cb)+'&_='+Date.now();
