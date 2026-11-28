@@ -22,10 +22,10 @@ const staffId='1AwRdS2opZMljcv7yISmtIsxd8Y89n4v-BGF-9dKbfxA';
 let staffRows=[],staffHeaders=[],staffCourses=[],staffCallsignIndex=-1,staffRequest=0;
 const staffEscape=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const courseRe=/160.kurs|CAD|sambandskurs|jus|juss|PPS|bevis|førstehjelp|klasse|kurs|kompetanse/i;
-let sideCache=null,sidePending=null;
+let sideCache=null,sidePending=null,sideCacheAt=0;
 const normName=v=>String(v??'').normalize('NFKC').trim().toLocaleLowerCase('no').replace(/\s+/g,' ');
 function fetchSide(){
- if(sideCache)return Promise.resolve(sideCache);
+ if(sideCache&&Date.now()-sideCacheAt<30000)return Promise.sideCacheAt=Date.now();sidePending=null;resolve(sideCache);
  if(sidePending)return sidePending;
  sidePending=new Promise((resolve,reject)=>{
   const cb='sideCb'+Date.now(),script=document.createElement('script');let done=false;
@@ -40,7 +40,7 @@ function fetchSide(){
    const at=raw.findIndex(r=>r.some(v=>normName(v)==='discord - navn'));
    if(at<0){sidePending=null;reject(Error('Mangler overskrifter'));return}
    const h=raw[at].map(v=>String(v??'')),col=re=>h.findIndex(v=>re.test(v));
-   const d=col(/discord.*navn/i),ik=col(/ik.*navn/i),p=col(/stilling/i),c=col(/kallesignal/i),st=col(/^status$/i);
+   const d=col(/discord/i),ik=col(/ik.*navn|^navn$/i),p=col(/stilling/i),c=col(/kallesignal/i),st=col(/^status$/i);
    sideCache=raw.slice(at+1).map(r=>({discord:d>=0?String(r[d]??'').trim():'',ik:ik>=0?String(r[ik]??'').trim():'',stilling:p>=0?String(r[p]??'').trim():'',call:c>=0?String(r[c]??'').trim():'',status:st>=0?String(r[st]??'').trim():''})).filter(r=>r.discord||r.ik);
    resolve(sideCache);
   };
@@ -52,7 +52,7 @@ function fetchSide(){
 }
 function showSideOnCard(overlay,row){
  const target=overlay.querySelector('.staff-profile-side');
- const names=staffHeaders.map((h,i)=>/^(discord.*navn|ik.*navn|navn)$/i.test(h.trim())?normName(row[i]):'').filter(Boolean);
+ const names=staffHeaders.map((h,i)=>/^(discord(?:.*navn)?|ik.*navn|navn|mail|ansatt.*navn)$/i.test(h.trim())?normName(row[i]):'').filter(Boolean);
  if(!names.length){target.textContent='Ingen navn å koble mot Sidekompetanse.';return}
  fetchSide().then(items=>{
   if(!target.isConnected)return;
